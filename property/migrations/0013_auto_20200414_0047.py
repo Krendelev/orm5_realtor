@@ -8,43 +8,65 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('property', '0012_auto_20200408_2323'),
+        ("property", "0012_auto_20200408_2323"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='complaint',
-            name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='complaints', to=settings.AUTH_USER_MODEL, verbose_name='Кто жаловался'),
+            model_name="complaint",
+            name="author",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="complaints",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Кто жаловался",
+            ),
         ),
         migrations.AlterField(
-            model_name='complaint',
-            name='complaint_about',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='compaints', to='property.Flat', verbose_name='Квартира, на которую пожаловались'),
+            model_name="complaint",
+            name="complaint_about",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="compaints",
+                to="property.Flat",
+                verbose_name="Квартира, на которую пожаловались",
+            ),
         ),
         migrations.AlterField(
-            model_name='flat',
-            name='active',
-            field=models.BooleanField(db_index=True, verbose_name='Объявление активно'),
+            model_name="flat",
+            name="active",
+            field=models.BooleanField(db_index=True, verbose_name="Объявление активно"),
         ),
         migrations.AlterField(
-            model_name='flat',
-            name='liked_by',
-            field=models.ManyToManyField(blank=True, related_name='liked_flats', to=settings.AUTH_USER_MODEL, verbose_name='Кому понравилась'),
+            model_name="flat",
+            name="liked_by",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="liked_flats",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Кому понравилась",
+            ),
         ),
         migrations.AlterField(
-            model_name='flat',
-            name='new_building',
-            field=models.BooleanField(blank=True, db_index=True, null=True, verbose_name='Новостройка'),
+            model_name="flat",
+            name="new_building",
+            field=models.BooleanField(
+                blank=True, db_index=True, null=True, verbose_name="Новостройка"
+            ),
         ),
         migrations.AlterField(
-            model_name='owner',
-            name='flats_owned',
-            field=models.ManyToManyField(blank=True, related_name='flat_owners', to='property.Flat', verbose_name='Квартиры в собственности'),
+            model_name="owner",
+            name="flats_owned",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="flat_owners",
+                to="property.Flat",
+                verbose_name="Квартиры в собственности",
+            ),
         ),
         migrations.AlterField(
-            model_name='owner',
-            name='name',
-            field=models.CharField(max_length=200, unique=True, verbose_name='ФИО владельца'),
+            model_name="owner",
+            name="name",
+            field=models.CharField(max_length=200, verbose_name="ФИО владельца"),
         ),
     ]

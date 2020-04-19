@@ -5,7 +5,11 @@ def set_flat_owned(apps, schema_editor):
     Flat = apps.get_model("property", "Flat")
     Owner = apps.get_model("property", "Owner")
     for owner in Owner.objects.all():
-        flats = list(Flat.objects.filter(owner__contains=owner.name))
+        flats = list(
+            Flat.objects.filter(
+                owner__contains=owner.name, owners_phonenumber__exact=owner.phonenumber
+            )
+        )
         owner.flats_owned.set(flats)
         owner.save()
 
